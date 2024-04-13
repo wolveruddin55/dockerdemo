@@ -1,0 +1,10 @@
+Docker commads to run this application 
+
+1) docker build -t myapp_image .  build docker file and creates a container
+
+2) docker compose up -->
+	 Docker Compose will read your docker-compose.yml file and start the containers defined within it. If the containers are not already built, Docker Compose will build them first using the specified Docker images. It will then start the containers in the background, printing their output to the terminal.
+
+3) docker ps -a --> returns list of containers
+
+4) docker logs <container_id>
