@@ -13,9 +13,9 @@ import com.example.demo.entity.EmployeeEntity;
 @Repository
 public interface EmployeeDAO extends JpaRepository<EmployeeEntity, Long> {
 
-	@Query(value="select * from employee", nativeQuery = true)
+	@Query(value="select * from public.employee", nativeQuery = true)
 	Optional<List<EmployeeEntity>> findAllEmployees();
 	
-	@Query(value="select * from employee where email =:email", nativeQuery = true)
+	@Query(value="select * from public.employee where email =:email", nativeQuery = true)
 	Optional<List<EmployeeEntity>> findEmployeeByEmail(@Param("email") String email);
 }

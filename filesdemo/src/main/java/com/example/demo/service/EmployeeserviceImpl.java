@@ -13,7 +13,10 @@ import com.example.demo.result.EmployeeDTO;
 import com.example.demo.result.Result;
 import com.example.demo.result.Utility;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class EmployeeserviceImpl implements EmployeeService {
 
 	@Autowired
@@ -28,11 +31,13 @@ public class EmployeeserviceImpl implements EmployeeService {
 		try {
 			Optional<List<EmployeeDTO>> employeeDTOsList = Optional
 					.of(modelToDTOMapper.fromEmployeeModel(employeeDAO.findAllEmployees().get()));
+			log.info(">>>>>>>>>>>>>>>>>>>> ",employeeDAO.findAllEmployees().get().get(0).getEmail());
 			if (employeeDTOsList.isPresent()) {
 				result.setData(employeeDTOsList);
 				result.setMessage(Utility.SUCCESS_MESSAGE);
 				result.setStatusCode(HttpStatus.OK.value());
 			} else {
+				log.info(">>>>>>>>>>>>>>>>>> ", employeeDTOsList.get().get(0).getEmail());
 				result.setData(employeeDTOsList);
 				result.setMessage(Utility.NOT_FOUND);
 				result.setStatusCode(HttpStatus.NOT_FOUND.value());
