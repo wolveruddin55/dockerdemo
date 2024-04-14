@@ -1,4 +1,5 @@
 package com.example.demo.service;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +32,12 @@ public class EmployeeserviceImpl implements EmployeeService {
 		try {
 			Optional<List<EmployeeDTO>> employeeDTOsList = Optional
 					.of(modelToDTOMapper.fromEmployeeModel(employeeDAO.findAllEmployees().get()));
-			log.info(">>>>>>>>>>>>>>>>>>>> ",employeeDAO.findAllEmployees().get().get(0).getEmail());
 			if (employeeDTOsList.isPresent()) {
 				result.setData(employeeDTOsList);
 				result.setMessage(Utility.SUCCESS_MESSAGE);
 				result.setStatusCode(HttpStatus.OK.value());
 			} else {
-				log.info(">>>>>>>>>>>>>>>>>> ", employeeDTOsList.get().get(0).getEmail());
-				result.setData(employeeDTOsList);
+				result.setData(Collections.emptyList());
 				result.setMessage(Utility.NOT_FOUND);
 				result.setStatusCode(HttpStatus.NOT_FOUND.value());
 			}
